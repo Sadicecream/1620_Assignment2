@@ -13,17 +13,8 @@ var contactList = [ 
 	}
 ];
 
-var contact = [  
-	{ 
-		name: "Oliver Queen", 
-		phone: "778-555-1234", 
-		address: "101 Main St, Star City, USA",    
-		email: "greenarrow@watchtower.com",  
-	}
-]
 
-console.log(contact[0].phone)
-function insertDOMContact(word) {
+function insertDOMContact(contact) {
     return `
         <a href="page3.html"><div class="contact">${word}</div></a>
 
@@ -31,18 +22,16 @@ function insertDOMContact(word) {
 }
 
 function cleanUpIndex(){
-    var clean = document.querySelectorAll('div.contact')
+    const clean = document.querySelectorAll('div.contact')
     for (i=0; i<clean.length; i++){
         clean[i].remove()
     }
 }
 
-
 function createSingleIndex(contact){
     const section = document.querySelector('.main')
-    section.insertAdjacentHTML('beforeend', insertDOMContact(contact[0].name))
+    section.insertAdjacentHTML('beforeend', insertDOMContact(contact.name))
 }
-
 
 function renderIndex(contactList){
     const section = document.querySelector('.main')
@@ -51,3 +40,83 @@ function renderIndex(contactList){
     }
 }
 
+
+
+function cleanUpView(){
+    const clean = document.querySelector('div.contactinfo')
+    clean.remove()
+}
+
+function renderView(contact){
+    const section = document.querySelector('.main')
+    section.insertAdjacentHTML("afterbegin",insertDOMContent(contact))
+}
+
+
+
+function cleanUpCreate(){
+    const clean = document.querySelector('div.contactedit')
+    clean.remove()
+}
+
+function renderCreate(contact){
+    const section = document.querySelector('.main')
+    section.insertAdjacentHTML('afterbegin',insertDOMCreate(contact))
+}
+
+function insertDOMCreate(contact){
+    return `
+    <div class="contactedit">
+    <div class="contactimg">
+        <img src="./img/profile.jpg" class ="profilepic" alt="Profile picture">
+    </div>
+    <div class="form">
+        <form>
+            <div class="inputcontainer">
+                <input type="text" id="contactname" name="contactname" placeholder='${contact.name}'>
+                <button class="extrafield" id="extranamefield" name="extranamefield">+</button>
+            </div>
+
+            <div class="inputcontainer">
+                <input type="tel" id="contactphone" name="contactphone" placeholder="${contact.phone}">
+                <button class="extrafield" id="extraphonefield" name="extraphonefield">+</button>
+            </div>
+
+            <div class="inputcontainer">
+                <input type="text" id="contactaddress" name="contactaddress" placeholder="${contact.address}">
+                <button class="extrafield" id="extraaddressfield" name="extraaddressfield">+</button>
+            </div>
+            
+            <div class="inputcontainer">
+                <input type="email" id="contactemail" name="contactemail" placeholder="${contact.email}">
+                <button class="extrafield" id="extraemailfield" name="extraemailfield">+</button>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="button save" id="savecontact" name="savecontact">Save Contact</button>
+                <button type="reset" class="button cancel" id="cancel" name="cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    
+    `
+}
+
+function insertDOMView(contact){
+    return `
+    <div class="contactinfo">
+            <div class="contactname">
+                Raquel Ervin
+                <img src="./img/profile.jpg" class="profilepic" alt="Profile picture">
+            </div>
+            <div class="contactemail">email: ${contact.email}</div>
+            <div class="contactphone">cell: ${contact.phone}</div>
+            <div class="contactaddress">address: ${contact.address}</div>
+            <div class="buttons">
+                <button class="button edit" value="Edit">Edit</button>
+                <button class="button close" value="Close">Close</button>
+            </div>
+        </div>
+    `
+}
