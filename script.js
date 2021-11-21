@@ -1,1 +1,7 @@
-/* This file is where all your work should go for Assignment 2.  Please remove this comment. */
+function cleanUpIndex(){
+    var clean = document.querySelectorAll('div.contact')
+    console.log(clean)
+    for (i=0; i<clean.length; i++){
+        clean[i].remove()
+    }
+}
