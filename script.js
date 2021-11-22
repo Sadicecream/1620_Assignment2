@@ -7,10 +7,10 @@ var contactList = [ 
 		email: "rocket@gmail.com",  
 	},   
 	{    
-		name: "Jessica Cruz",    
-		phone: "123-555-5555",    
-		address: "Portland Oregon",    
-		email: "greenlantern@watchtower.com",  
+		name: "Contact Name",    
+		phone: "Contact Phone",    
+		address: "Contact Address",    
+		email: "Contact Email",  
 	}
 ];
 //-----------------------------------
@@ -23,7 +23,7 @@ function insertDOMIndex(contact) {
     `
 }
 
-function insertDOMCreate(contact){
+function insertDOMCreate(contact = contactList[1]){
     return `
     <div class="contactedit">
     <div class="contactimg">
@@ -120,7 +120,7 @@ function cleanUpCreate(){
     clean.remove()
 }
 
-function renderCreate(contact){
+function renderCreate(){
     const section = document.querySelector('.main')
-    section.insertAdjacentHTML('afterbegin',insertDOMCreate(contact))
+    section.insertAdjacentHTML('afterbegin',insertDOMCreate())
 }
