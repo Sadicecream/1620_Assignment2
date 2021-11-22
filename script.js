@@ -1,9 +1,10 @@
+//  Example Contact List
 var contactList = [  
 	{ 
-		name: "Oliver Queen", 
-		phone: "778-555-1234", 
-		address: "101 Main St, Star City, USA",    
-		email: "greenarrow@watchtower.com",  
+		name: "Raquel Ervin", 
+		phone: "+1 555 555-5555", 
+		address: "123 front st, Unit #1, Dakota City",    
+		email: "rocket@gmail.com",  
 	},   
 	{    
 		name: "Jessica Cruz",    
@@ -12,56 +13,14 @@ var contactList = [ 
 		email: "greenlantern@watchtower.com",  
 	}
 ];
+//-----------------------------------
+//  Helper Functions
 
-
-function insertDOMContact(contact) {
+function insertDOMIndex(contact) {
     return `
-        <a href="page3.html"><div class="contact">${word}</div></a>
+        <a href="page3.html"><div class="contact">${contact}</div></a>
 
     `
-}
-
-function cleanUpIndex(){
-    const clean = document.querySelectorAll('div.contact')
-    for (i=0; i<clean.length; i++){
-        clean[i].remove()
-    }
-}
-
-function createSingleIndex(contact){
-    const section = document.querySelector('.main')
-    section.insertAdjacentHTML('beforeend', insertDOMContact(contact.name))
-}
-
-function renderIndex(contactList){
-    const section = document.querySelector('.main')
-    for (var obj of contactList){
-        section.insertAdjacentHTML('afterbegin', insertDOMContact(obj.name))
-    }
-}
-
-
-
-function cleanUpView(){
-    const clean = document.querySelector('div.contactinfo')
-    clean.remove()
-}
-
-function renderView(contact){
-    const section = document.querySelector('.main')
-    section.insertAdjacentHTML("afterbegin",insertDOMContent(contact))
-}
-
-
-
-function cleanUpCreate(){
-    const clean = document.querySelector('div.contactedit')
-    clean.remove()
-}
-
-function renderCreate(contact){
-    const section = document.querySelector('.main')
-    section.insertAdjacentHTML('afterbegin',insertDOMCreate(contact))
 }
 
 function insertDOMCreate(contact){
@@ -107,7 +66,7 @@ function insertDOMView(contact){
     return `
     <div class="contactinfo">
             <div class="contactname">
-                Raquel Ervin
+                ${contact.name}
                 <img src="./img/profile.jpg" class="profilepic" alt="Profile picture">
             </div>
             <div class="contactemail">email: ${contact.email}</div>
@@ -119,4 +78,49 @@ function insertDOMView(contact){
             </div>
         </div>
     `
+}
+//-----------------------------------
+//  Index Page
+
+function cleanUpIndex(){
+    const clean = document.querySelectorAll('div.contact')
+    for (i=0; i<clean.length; i++){
+        clean[i].remove()
+    }
+}
+
+function createSingleIndex(contact){
+    const section = document.querySelector('.main')
+    section.insertAdjacentHTML('beforeend', insertDOMIndex(contact.name))
+}
+
+function renderIndex(contactList){
+    const section = document.querySelector('.main')
+    for (var obj of contactList){
+        section.insertAdjacentHTML('afterbegin', insertDOMIndex(obj.name))
+    }
+}
+//-----------------------------------
+//  View Page
+
+function cleanUpView(){
+    const clean = document.querySelector('div.contactinfo')
+    clean.remove()
+}
+
+function renderView(contact){
+    const section = document.querySelector('.main')
+    section.insertAdjacentHTML("afterbegin",insertDOMView(contact))
+}
+//-----------------------------------
+//  Create Page
+
+function cleanUpCreate(){
+    const clean = document.querySelector('div.contactedit')
+    clean.remove()
+}
+
+function renderCreate(contact){
+    const section = document.querySelector('.main')
+    section.insertAdjacentHTML('afterbegin',insertDOMCreate(contact))
 }
