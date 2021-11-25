@@ -82,8 +82,7 @@ function insertDOMView(contact){
 //-----------------------------------
 //  Index Page
 
-function cleanUpIndex(event){
-    event.preventDefault();
+function cleanUpIndex(){
     const clean = document.querySelectorAll('div.contact')
     for (i=0; i<clean.length; i++){
         clean[i].remove()
@@ -103,11 +102,33 @@ function renderIndex(contactList){
     }
 }
 
-var cleaner = document.querySelector('.nav-home');
-cleaner.addEventListener('click',cleanUpIndex);
-cleaner.onclick = addEventListener('click',function(evt){
+var home = document.querySelector('.nav-home');
+home.addEventListener('click',function(evt){
+    evt.preventDefault()
     evt.stopImmediatePropagation()
+    if (document.querySelectorAll('div.contact') != null){
+       cleanUpIndex() 
+    }
+    if (document.querySelector('.contactedit') !=null){
+        cleanUpCreate()
+    }
     renderIndex(contactList)
+});
+
+home.onclick = addEventListener('click',function(evt){
+
+})
+
+
+var new_cont = document.querySelector('.nav');
+new_cont.addEventListener('click',function(evt){
+    evt.preventDefault()
+    evt.stopImmediatePropagation()
+    cleanUpIndex()
+    if (document.querySelector('.contactedit') !=null){
+        cleanUpCreate()
+    }
+    renderCreate()
 })
 
 //-----------------------------------
